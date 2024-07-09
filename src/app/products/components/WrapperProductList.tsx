@@ -49,7 +49,10 @@ export const WrapperProductList = ({
   };
 
   useEffect(() => {
-    setProducts(productsData);
+    const storedProducts = localStorage.getItem('products');
+    if (!storedProducts) {
+      setProducts(productsData);
+    }
   }, [productsData]);
 
   return (
