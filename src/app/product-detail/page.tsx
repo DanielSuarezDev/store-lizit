@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { Typography } from '@/components';
@@ -11,10 +11,10 @@ import { DeleteProductModal } from '@/components/DeleteProductModal';
 import { Product, useProductContext } from '@/context/ProductContext';
 
 const Edit = () => {
-    const search = useSearchParams();
-    const edit = search.get('edit');
-    const view = search.get('view');
     const router = useRouter();
+    const search = useSearchParams();
+    const edit = search?.get('edit');
+    const view = search?.get('view');
     const id = edit || view;
 
     const { products, updateProduct } = useProductContext();
@@ -52,8 +52,9 @@ const Edit = () => {
     };
 
     if (!product) return <p>Loading...</p>;
-    console.log("product", product)
+
     return (
+        <Suspense fallback={<div>Loading...</div>}>
         <div className='justify-center p-10'>
 
             <div className='flex justify-between mt-10 w-[92%] m-auto'>
@@ -117,6 +118,7 @@ const Edit = () => {
                 />
             )}
         </div>
+        </Suspense>
     )
 }
 
