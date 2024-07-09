@@ -1,12 +1,13 @@
 "use client"
-import { DeleteProductModal } from '@/components/DeleteProductModal';
-import { Header } from '@/components/Header';
-import AddProductModal from '@/components/Popup';
-import { Search } from '@/components/Search';
-import { ProductTable } from '@/components/Table'
-import { Product as ProductProps, useProductContext } from '@/context/ProductContext';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+
+import { Header } from '@/components/Header';
+import { Search } from '@/components/Search';
+import AddProductModal from '@/components/Popup';
+import { ProductTable } from '@/components/Table'
+import { DeleteProductModal } from '@/components/DeleteProductModal';
+import { Product as ProductProps, useProductContext } from '@/context/ProductContext';
 
 const Product = () => {
   const { products, setProducts } = useProductContext();
@@ -34,12 +35,10 @@ const Product = () => {
   );
 
   const handleView = (id: number) => {
-    console.log(`View product with id: ${id}`);
     router.push(`/product-detail?view=${id}`);
   };
 
   const handleEdit = (id: number) => {
-    console.log(`Edit product with id: ${id}`);
     router.push(`/product-detail?edit=${id}`);
   };
 

@@ -8,8 +8,8 @@ export interface Product {
     price: number;
     description: string;
     category: string;
-    image: string; // Principal image URL
-    images: string[]; // Array of image URLs
+    image: string;
+    images: string[];
 }
 
 interface ProductContextType {
@@ -28,9 +28,8 @@ interface ProductProviderProps {
 
 export const ProductProvider: FC<ProductProviderProps> = ({ children }) => {
     const [products, setProductsState] = useState<Product[]>([]);
-    const {success} = useToast();
+    const { success } = useToast();
 
-    // Load products from localStorage on initial render
     useEffect(() => {
         const storedProducts = localStorage.getItem('products');
         if (storedProducts) {
@@ -38,9 +37,7 @@ export const ProductProvider: FC<ProductProviderProps> = ({ children }) => {
         }
     }, []);
 
-      // Save products to localStorage whenever the products state changes
-      useEffect(() => {
-        console.log("products --------------", products.length)
+    useEffect(() => {
         if (products.length > 0) {
             localStorage.setItem('products', JSON.stringify(products));
         } else {

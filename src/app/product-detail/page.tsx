@@ -1,14 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import { ArrowSvg, LogoFullSvg } from '@/assets/icons';
-import { Typography } from '@/components';
-import { Button } from '@/components/Button';
-import { DeleteProductModal } from '@/components/DeleteProductModal';
-import { Input } from '@/components/Input';
-import { Product, useProductContext } from '@/context/ProductContext';
+import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-import React, { useEffect, useState } from 'react'
+import { Typography } from '@/components';
+import { Input } from '@/components/Input';
+import { Button } from '@/components/Button';
+import { ArrowSvg, LogoFullSvg } from '@/assets/icons';
+import { DeleteProductModal } from '@/components/DeleteProductModal';
+import { Product, useProductContext } from '@/context/ProductContext';
 
 const Edit = () => {
     const search = useSearchParams();
